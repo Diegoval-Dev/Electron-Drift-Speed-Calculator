@@ -1,0 +1,47 @@
+:root{
+    --lapis-lazuli: #05668dff;
+    --ucla-blue: #427aa1ff;
+    --alice-blue: #ebf2faff;
+    --asparagus: #679436ff;
+    --apple-green: #a5be00ff;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: var(--ucla-blue);
+}
+h1{
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--asparagus);
+    color: var(--alice-blue);
+}
+#main-content{
+    display: flex;
+    width: 100%;
+    height: 89vh;
+    justify-content: center;
+    align-items: center;
+}
+#cable{
+    width: 600px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+#output{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#inputs{
+    margin-left: 50px;
+}
