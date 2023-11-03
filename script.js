@@ -30,20 +30,53 @@ $(document).ready(function() {
     var graphite = $('#graphite');
     var voltage = $('#txt-voltage');
     var submitButton = $('#submit-button');
-
-
-    submitButton.click(function (){
-
-    });
+    let diameter;
 
     inputAwg.click(function(){
         inputMm.prop("checked", false);
         let mm = AwgToMm(diameter.val());
+        diameter = mm;
         outputDiameter.text("Diamter: "+mm.toFixed(3) + " mm.");
     });
     inputMm.click(function(){
         inputAwg.prop("checked", false);
+        diameter = diameter.val();
         outputDiameter.text("Diamter: "+diameter.val() + " mm.");
+    });
+
+    submitButton.click(function (){
+        let area = Area(diameter);
+        let ro;
+        let n;
+        let l = length.val();
+        let resistance;
+
+        if(gold.is(":checked")){
+            ro = rGold;
+            n = nGold;
+        }
+        else if(silver.is(":checked")){
+            ro = rSilver;
+            n = nSilver;
+        }
+        else if(copper.is(":checked")){
+            ro = rCopper;
+            n = nCopper;
+        }
+        else if(aluminum.is(":checked")){
+            ro = rAluminum;
+            n = nAluminum;
+        }
+        else if(graphite.is(":checked")){
+            ro = rGraphite;
+            n = nGraphite;
+        }
+
+        resistance = Resistance(ro, l, area);
+        let current = Current(voltage.val(), resistance);
+        let power = Power(current, voltage.val());
+        let velocity = Velocity(current, n, area);
+
     });
 
 });
