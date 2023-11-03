@@ -17,17 +17,15 @@ The program offers a bonus feature, allowing you to visualize electron motion wi
 
 ## Usage
 
-1. Clone this repository to your local machine.
-2. Open the `index.html` file in your web browser to run the Electron Drift Speed Calculator.
+To use the Electron Drift Speed Calculator, simply visit the following link:
+
+[Electron Drift Speed Calculator](https://your-website.com/electron-drift-speed-calculator)
 
 ## Simulation Notes
 
 - Electron drift speed is visually represented with a scale factor for visibility since real electron velocities are extremely small.
 - Bonus: Activate the option to visualize atomic interactions and electron random walks for a more detailed simulation.
 
-## Contributions
-
-Contributions and improvements to the program are welcome. Please fork the repository, make your changes, and submit a pull request.
 
 ## License
 
