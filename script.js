@@ -3,7 +3,7 @@ const nSilver = (10500/0.108)*6.022e23 *47;
 const nCopper = (8960/0.0635)*6.022e23 *29;
 const nAluminum = (2700/0.027)*6.022e23 *13;
 const nGraphite = (2267/0.012)*6.022e23 *6;
-const pi = Math.pi;
+const pi = Math.PI;
 const rGold = 2.44e-8;
 const rSilver = 1.59e-8;
 const rCopper = 1.724e-8;
@@ -19,7 +19,7 @@ $(document).ready(function() {
     var outputVelocity = $('#output-velocity');
     var outputTime = $('#output-time');
     var length = $('#txt-length');
-    var diameter = $('#txt-diameter');
+    var diameterInput = $('#txt-diameter');
     var inputMm = $('#mm');
     var inputAwg = $("#awg");
     var outputDiameter = $('#diametermm');
@@ -34,14 +34,14 @@ $(document).ready(function() {
 
     inputAwg.click(function(){
         inputMm.prop("checked", false);
-        let mm = AwgToMm(diameter.val());
+        let mm = AwgToMm(diameterInput.val());
         diameter = mm;
         outputDiameter.text("Diamter: "+mm.toFixed(3) + " mm.");
     });
     inputMm.click(function(){
         inputAwg.prop("checked", false);
-        diameter = diameter.val();
-        outputDiameter.text("Diamter: "+diameter.val() + " mm.");
+        diameter = diameterInput.val();
+        outputDiameter.text("Diamter: "+diameterInput.val() + " mm.");
     });
 
     submitButton.click(function (){
@@ -50,6 +50,8 @@ $(document).ready(function() {
         let n;
         let l = length.val();
         let resistance;
+
+        console.log(diameter);
 
         if(gold.is(":checked")){
             ro = rGold;
@@ -77,13 +79,20 @@ $(document).ready(function() {
         let power = Power(current, voltage.val());
         let velocity = Velocity(current, n, area);
 
+        
+
+        outputResistance.text("Wire resistance: "+resistance.toExponential()+" Ω");
+        outputCurrent.text("Current: "+current.toExponential() +" A");
+        outputPower.text("Power dissipated by the wire: "+power.toExponential() +" W");
+        outputVelocity.text("Drift velocity of electrons: "+velocity.toExponential()+" m/s");
+        outputTime.text("Time it will take for electrons to traverse the entire wire: "+Time(l, velocity).toExponential() +" s");
     });
 
 });
 
 
 function Area(diameter){
-    let r = diameter/2;
+    let r = (diameter / 1000)/2;
     return pi * (r*r);
 }
 
