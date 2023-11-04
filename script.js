@@ -13,6 +13,7 @@ const q = 1.6e-19;
 
 $(document).ready(function() {
     var cable = $('#cable');
+    var electron = $('#electron');
     var outputResistance = $('#output-resistance');
     var outputCurrent = $('#output-current');
     var outputPower = $('#output-power');
@@ -31,6 +32,8 @@ $(document).ready(function() {
     var voltage = $('#txt-voltage');
     var submitButton = $('#submit-button');
     let diameter;
+    let currentYPosition = 0;
+    let currentXPosition = 0;
 
     inputAwg.click(function(){
         inputMm.prop("checked", false);
@@ -51,7 +54,6 @@ $(document).ready(function() {
         let l = length.val();
         let resistance;
 
-        console.log(diameter);
 
         if(gold.is(":checked")){
             ro = rGold;
@@ -86,7 +88,79 @@ $(document).ready(function() {
         outputPower.text("Power dissipated by the wire: "+power.toExponential() +" W");
         outputVelocity.text("Drift velocity of electrons: "+velocity.toExponential()+" m/s");
         outputTime.text("Time it will take for electrons to traverse the entire wire: "+Time(l, velocity).toExponential() +" s");
+
+        MoveElectron();
+
     });
+
+    function MoveElectron(){
+        MoveBottom();
+        MoveTop();
+        MoveRight();
+        MoveLeft();
+    }
+    
+    function MoveBottom(){
+        electron.animate(
+            {
+                top: currentYPosition + 10 + 'px'
+            },
+            {
+                duration: 600,
+                complete: function() {
+                electron.css('top:'+ currentYPosition + 10 +'px');
+                }
+            }
+            );
+            currentYPosition += 10;
+    }
+
+    function MoveTop(){
+        electron.animate(
+            {
+                top: currentYPosition - 10 + 'px'
+            },
+            {
+                duration: 600,
+                complete: function() {
+                electron.css('top:'+ currentYPosition - 10 +'px');
+                }
+            }
+            );
+            currentYPosition -= 10;
+    }
+
+    function MoveRight(){
+        electron.animate(
+            {
+                left: currentXPosition + 10 + 'px'
+            },
+            {
+                duration: 600,
+                complete: function() {
+                electron.css('left:'+ currentXPosition + 10 +'px');
+                }
+            }
+            );
+            currentXPosition += 10;
+            console.log("Mover" + currentXPosition );
+    }
+
+    function MoveLeft(){
+        electron.animate(
+            {
+                left: currentXPosition - 10 + 'px'
+            },
+            {
+                duration: 600,
+                complete: function() {
+                electron.css('left:'+ currentYPosition - 0 +'px');
+                }
+            }
+            );
+            currentXPosition -= 10;
+            console.log("Mover" + currentXPosition );
+    }
 
 });
 
@@ -119,3 +193,4 @@ function Velocity(I,n,A){
 function Time(l,v){
     return l/v;
 }
+
