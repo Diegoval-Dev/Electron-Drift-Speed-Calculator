@@ -32,8 +32,8 @@ $(document).ready(function() {
     var voltage = $('#txt-voltage');
     var submitButton = $('#submit-button');
     let diameter;
-    let currentYPosition = 0;
-    let currentXPosition = 0;
+    let currentYPos = 0;
+    let currentXPos = 0;
 
     inputAwg.click(function(){
         inputMm.prop("checked", false);
@@ -48,6 +48,8 @@ $(document).ready(function() {
     });
 
     submitButton.click(function (){
+        currentXPos = 0;
+        currentYPos = 0;
         let area = Area(diameter);
         let ro;
         let n;
@@ -97,32 +99,37 @@ $(document).ready(function() {
         const maxXPos = 600;
       
         function moveElectron() {
-          // Generar un valor aleatorio entre -1 y 1 para los desplazamientos en X e Y
-          const dX = Math.random() * 2 - 1;
-          const dY = Math.random() * 2 - 1;
+
+            const dX = Math.random() *  (3 - (-2)) + (-2);
+            const dY = Math.random() * 10 - 5;
       
-          // Actualizar la posición en X e Y
-          currentXPos += dX;
-          currentYPos += dY;
+
+            currentXPos += dX;
+            currentYPos += dY;
       
-          // Asegurarse de que la posición Y permanezca entre 0 y 100
-          currentYPos = Math.max(0, Math.min(100, currentYPos));
+
+            currentYPos = Math.max(0, Math.min(100, currentYPos));
       
-          // Actualizar la posición del electron en la pantalla
-          electron.css({
-            left: currentXPos + 'px',
-            top: currentYPos + 'px'
-          });
-      
-          if (currentXPos < maxXPos) {
-            // Si no ha alcanzado la posición final, seguir moviendose
-            requestAnimationFrame(moveElectron);
-          }
-        }
-      
-        // Iniciar la marcha aleatoria
+
+            electron.css({
+                left: currentXPos + 'px',
+                top: currentYPos + 'px'
+            });
+        
+                if (currentXPos < maxXPos) {
+                    requestAnimationFrame(moveElectron);
+                }else{
+                    electron.css({
+                        left: 0 + 'px',
+                        top: 0 + 'px'
+                    });
+                    currentXPos = 0;
+                    currentYPos = 0;
+                }
+            }
+
         moveElectron();
-      }
+    }
     
 /*     function MoveBottom(){
         electron.animate(
