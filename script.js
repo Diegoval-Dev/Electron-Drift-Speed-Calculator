@@ -89,18 +89,42 @@ $(document).ready(function() {
         outputVelocity.text("Drift velocity of electrons: "+velocity.toExponential()+" m/s");
         outputTime.text("Time it will take for electrons to traverse the entire wire: "+Time(l, velocity).toExponential() +" s");
 
-        MoveElectron();
+        randomWalk();
 
     });
 
-    function MoveElectron(){
-        MoveBottom();
-        MoveTop();
-        MoveRight();
-        MoveLeft();
-    }
+    function randomWalk() {
+        const maxXPos = 600;
+      
+        function moveElectron() {
+          // Generar un valor aleatorio entre -1 y 1 para los desplazamientos en X e Y
+          const dX = Math.random() * 2 - 1;
+          const dY = Math.random() * 2 - 1;
+      
+          // Actualizar la posición en X e Y
+          currentXPos += dX;
+          currentYPos += dY;
+      
+          // Asegurarse de que la posición Y permanezca entre 0 y 100
+          currentYPos = Math.max(0, Math.min(100, currentYPos));
+      
+          // Actualizar la posición del electron en la pantalla
+          electron.css({
+            left: currentXPos + 'px',
+            top: currentYPos + 'px'
+          });
+      
+          if (currentXPos < maxXPos) {
+            // Si no ha alcanzado la posición final, seguir moviendose
+            requestAnimationFrame(moveElectron);
+          }
+        }
+      
+        // Iniciar la marcha aleatoria
+        moveElectron();
+      }
     
-    function MoveBottom(){
+/*     function MoveBottom(){
         electron.animate(
             {
                 top: currentYPosition + 10 + 'px'
@@ -160,7 +184,7 @@ $(document).ready(function() {
             );
             currentXPosition -= 10;
             console.log("Mover" + currentXPosition );
-    }
+    } */
 
 });
 
