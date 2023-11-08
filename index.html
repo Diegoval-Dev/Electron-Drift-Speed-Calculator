@@ -8,68 +8,70 @@
 </head>
 <body>
     <h1>Electron Drift Speed Calculator</h1>
-    <div id="main-content">
-        <div id="output">
-            <div id="cable">
-                <div id="electron">e⁻</div>
+    <div id="container"> <!-- Agregar el contenedor" -->
+        <div id="main-content">
+            <div id="output">
+                <div id="cable">
+                    <div id="electron">e⁻</div>
+                </div>
+                <div id="output-text">
+                    <p id="output-resistance">Wire resistance: Ω</p>
+                    <p id="output-current">Current: A</p>
+                    <p id="output-power">Power dissipated by the wire: W</p>
+                    <p id="output-velocity">Drift velocity of electrons: m/s</p>
+                    <p id="output-time">Time it will take for electrons to traverse the entire wire: s</p>
+                </div>
             </div>
-            <div id="output-text">
-                <p id="output-resistance">Wire resistance: Ω</p>
-                <p id="output-current">Current: A</p>
-                <p id="output-power">Power dissipated by the wire: W</p>
-                <p id="output-velocity">Drift velocity of electrons: m/s</p>
-                <p id="output-time">Time it will take for electrons to traverse the entire wire: s</p>
+            <div id="inputs">
+                <p>Fill the information</p>
+                <hr>
+                <form action="">
+                    <label>
+                        Wire length:
+                        <input type="number" step="any" name="length" id="txt-length" min="1"> m
+                    </label>
+                    <br>
+                    <label>
+                        Wire diameter:
+                        <input type="number" step="any" name="diameter" id="txt-diameter" min="1">
+                    </label>
+                    <label>
+                        <input type="radio" name="opcion" id="mm" value="mm"> mm
+                    </label>
+                    <label>
+                        <input type="radio" name="opcion" id="awg" value="awg"> AWG
+                    </label>
+                    <p id="diametermm">Diamter: </p>
+                    <hr>
+                    <p>Material:</p>
+                    <label>
+                        <input type="radio" name="op" id="gold" value="gold">Gold. η = 4.66e30
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="op" id="silver" value="silver">Silver. η = 2.75e30
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="op" id="copper" value="copper">Copper. η = 2.46e30
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="op" id="aluminum" value="aluminum">Aluminum. η = 7.82e29
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="op" id="graphite" value="graphite">Graphite. η = 6.82e29
+                    </label>
+                    <br>
+                    <label>
+                        Voltage:
+                        <input type="number" step="any" name="voltage" id="txt-voltage" min="1"> V
+                    </label>
+                    <hr>
+                </form>
+                <button id="submit-button">Calculate</button>
             </div>
-        </div>
-        <div id="inputs">
-            <p>Fill the information</p>
-            <hr>
-            <form action="">
-                <label>
-                    Wire length:
-                    <input type="number" step="any" name="length" id="txt-length" min="1"> m
-                </label>
-                <br>
-                <label>
-                    Wire diameter:
-                    <input type="number"  step="any" name="diameter" id="txt-diameter" min="1">
-                </label>
-                <label>
-                    <input type="radio" name="opcion" id="mm" value="mm"> mm
-                </label>
-                <label>
-                    <input type="radio" name="opcion" id="awg" value="awg"> AWG
-                </label>
-                <p id="diametermm">Diamter: </p>
-                <hr>
-                <p>Material:</p>
-                <label>
-                    <input type="radio" name="op" id="gold" value="gold">Gold. η = 4.66e30
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="op" id="silver" value="silver">Silver. η = 2.75e30
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="op" id="copper" value="copper">Copper. η = 2.46e30
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="op" id="aluminum" value="aluminum">Aluminum. η = 7.82e29
-                </label>
-                <br>
-                <label>
-                    <input type="radio" name="op" id="graphite" value="graphite">Graphite. η = 6.82e29
-                </label>
-                <br>
-                <label>
-                    Voltage:
-                    <input type="number"  step="any" name="voltage" id="txt-voltage" min="1"> V
-                </label>
-                <hr>
-            </form>
-            <button id="submit-button">Calculate</button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
